@@ -5,7 +5,7 @@ import image from '../../Scripts/image';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { API_BASE_URL } from './../config.js';
+import { API_BASE_URL } from './../../../config';
 
 
 export default function OrganizationGrid() {

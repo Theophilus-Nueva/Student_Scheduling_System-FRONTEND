@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; 
 import './calendar.css'; 
 
-import { API_BASE_URL } from '../../config.js';
+import { API_BASE_URL } from './../../../config';
 
 const CustomCalendar = ({ id }) => {
   const [value, setValue] = useState(new Date()); // Selected date
