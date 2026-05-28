@@ -38,7 +38,6 @@ const DashboardCreateEvent = () => {
         startTime: '',
         endTime: '',
         description: '',
-        organizationId: parseInt(id)
     });
 
     const handleSubmit = async (e) => {
@@ -51,7 +50,7 @@ const DashboardCreateEvent = () => {
             startTime: formData.startTime || null, 
             endTime: formData.endTime || null,    
             description: formData.description,
-            organizationId: id
+            organizationId: parseInt(id) // Ensuring ID is passed correctly as an integer
         };
     
         try {
