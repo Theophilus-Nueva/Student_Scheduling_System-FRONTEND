@@ -1,5 +1,4 @@
 const image = (logoData) => {
-console.log(logoData)
 
     if (!logoData) {
         return 'https://via.placeholder.com/150?text=No+Image'; 
