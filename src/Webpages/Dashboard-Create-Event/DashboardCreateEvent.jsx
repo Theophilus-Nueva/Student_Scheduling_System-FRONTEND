@@ -4,8 +4,7 @@ import './DashboardCreateEvent.css';
 
 import DashNavigation from '../Dash-Navigation/DashNavigation';
 
-import { API_BASE_URL } from '../config.js';
-
+import { API_BASE_URL } from './../../../config';
 
 
 const DashboardCreateEvent = () => {
@@ -18,7 +17,7 @@ const DashboardCreateEvent = () => {
     useEffect(() => {
       const fetchEvents = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/api/organizations/${id}/recent-events`);
+          const response = await fetch(`${API_BASE_URL}/api/organizations/${id}/recent-events`);
           if (!response.ok) throw new Error('Failed to fetch events');
           
           const data = await response.json();
@@ -82,7 +81,7 @@ const DashboardCreateEvent = () => {
         };
     
         try {
-            const response = await fetch('http://localhost:3000/api/events', {
+            const response = await fetch(`${API_BASE_URL}/api/events`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

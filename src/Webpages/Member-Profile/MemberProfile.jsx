@@ -6,7 +6,8 @@ import './MemberProfile.css';
 import ProfileInfo from './ProfileInfo';
 import ScheduleTable from './ScheduleTable';
 
-import { API_BASE_URL } from '../config.js';
+import { API_BASE_URL } from './../../../config';
+
 
 const MemberProfile = () => {
   const { id, committee } = useParams(); // 'id' = Org ID, 'committee' = Member ID
@@ -28,12 +29,12 @@ const MemberProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const profileRes = await fetch(`http://localhost:3000/api/committees/${committee}`);
+        const profileRes = await fetch(`${API_BASE_URL}/api/committees/${committee}`);
         const profileData = await profileRes.json();
         const finalProfile = Array.isArray(profileData) ? profileData[0] : profileData;
         setProfile(finalProfile);
         
-        const scheduleRes = await fetch(`http://localhost:3000/api/organizations/${id}/committee-schedule/${committee}`);
+        const scheduleRes = await fetch(`${API_BASE_URL}/api/organizations/${id}/committee-schedule/${committee}`);
         const scheduleData = await scheduleRes.json();
         
         if (Array.isArray(scheduleData)) {
@@ -89,7 +90,7 @@ const MemberProfile = () => {
     try {
         setLoading(true);
         // 2. Call API
-        const response = await fetch(`http://localhost:3000/api/committees/${committee}`, {
+        const response = await fetch(`${API_BASE_URL}/api/committees/${committee}`, {
             method: 'DELETE',
         });
 
@@ -125,7 +126,7 @@ const MemberProfile = () => {
         formData.append('profilePicture', newProfilePicture);
       }
 
-      const profileResponse = await fetch(`http://localhost:3000/api/committees/${committee}`, {
+      const profileResponse = await fetch(`${API_BASE_URL}/api/committees/${committee}`, {
         method: 'PUT',
         body: formData, 
       });
@@ -151,13 +152,13 @@ const MemberProfile = () => {
         };
 
         if (row.id) {
-            return fetch(`http://localhost:3000/api/schedules/${row.id}`, {
+            return fetch(`${API_BASE_URL}/api/schedules/${row.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
         } else {
-            return fetch(`http://localhost:3000/api/schedules`, {
+            return fetch(`${API_BASE_URL}/api/schedules`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
