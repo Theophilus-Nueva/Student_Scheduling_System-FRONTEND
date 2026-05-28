@@ -30,20 +30,23 @@ const ScheduleTable = ({ schedule, isEditing, onChange, onAddRow }) => {
                 <td>
                   {isEditing ? (
                       <div style={{ display: 'flex', gap: '5px' }}>
+                          {/* MAGIC FIX: Added type="time" */}
                           <input 
+                            type="time"
                             value={row.start_time || ''} 
                             onChange={(e) => onChange(idx, 'start_time', e.target.value)} 
-                            placeholder="Start" 
                             style={{ width: '50%' }}
                           />
+                          {/* MAGIC FIX: Added type="time" */}
                           <input 
+                            type="time"
                             value={row.end_time || ''} 
                             onChange={(e) => onChange(idx, 'end_time', e.target.value)} 
-                            placeholder="End" 
                             style={{ width: '50%' }}
                           />
                       </div>
                   ) : (
+                      // Optional: You could format this to AM/PM for viewing if you want later!
                       `${row.start_time || ''} - ${row.end_time || ''}`
                   )}
                 </td>
@@ -84,7 +87,6 @@ const ScheduleTable = ({ schedule, isEditing, onChange, onAddRow }) => {
           </tbody>
         </table>
 
-        {/* --- NEW: Add Row Button (Only visible in Edit Mode) --- */}
         {isEditing && (
           <div style={{ marginTop: '15px', textAlign: 'center' }}>
             <button 
