@@ -3,6 +3,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; 
 import './calendar.css'; 
 
+import { API_BASE_URL } from '../config.js';
+
 const CustomCalendar = ({ id }) => {
   const [value, setValue] = useState(new Date()); // Selected date
   const [activeStartDate, setActiveStartDate] = useState(new Date()); // Visible month
@@ -14,7 +16,7 @@ const CustomCalendar = ({ id }) => {
 
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/organizations/${id}/events`);
+        const response = await fetch(`${API_BASE_URL}/api/organizations/${id}/events`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch events');

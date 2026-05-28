@@ -12,6 +12,8 @@ import DashboardGenerateExcuseLettter from './Webpages/Dashboard-Generate-Excuse
 import MemberProfile from './Webpages/Member-Profile/MemberProfile';
 import AddMember from './Webpages/Dashboard-Generate-Excuse-Letter/GenerateAddMember'
 
+import { API_BASE_URL } from '../config.js';
+
 const Layout = () => {
   const location = useLocation();
   const [headerTitle, setHeaderTitle] = useState('Home');
@@ -27,7 +29,7 @@ const Layout = () => {
 
       const fetchOrgName = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/api/organizations/${orgId}`);
+          const response = await fetch(`${API_BASE_URL}/api/organizations/${orgId}`);
           if (response.ok) {
             const [data] = await response.json();
             

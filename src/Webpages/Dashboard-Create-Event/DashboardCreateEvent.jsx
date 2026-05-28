@@ -4,6 +4,8 @@ import './DashboardCreateEvent.css';
 
 import DashNavigation from '../Dash-Navigation/DashNavigation';
 
+import { API_BASE_URL } from '../config.js';
+
 
 
 const DashboardCreateEvent = () => {

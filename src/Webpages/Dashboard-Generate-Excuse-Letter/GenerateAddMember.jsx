@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import DashNavigation from '../Dash-Navigation/DashNavigation';
 import '../Member-Profile/MemberProfile.css'; 
 import ScheduleTable from '../Member-Profile/ScheduleTable'; 
+import { API_BASE_URL } from '../config.js';
 
 const AddMember = () => {
     const { id } = useParams(); 

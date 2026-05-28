@@ -6,6 +6,8 @@ import './MemberProfile.css';
 import ProfileInfo from './ProfileInfo';
 import ScheduleTable from './ScheduleTable';
 
+import { API_BASE_URL } from '../config.js';
+
 const MemberProfile = () => {
   const { id, committee } = useParams(); // 'id' = Org ID, 'committee' = Member ID
   const navigate = useNavigate();

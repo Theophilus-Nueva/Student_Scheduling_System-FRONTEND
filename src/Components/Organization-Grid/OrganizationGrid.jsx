@@ -5,6 +5,8 @@ import image from '../../Scripts/image';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import { API_BASE_URL } from '../config.js';
+
 
 export default function OrganizationGrid() {
   const [orgs, setOrgs] = useState([]);
@@ -14,7 +16,7 @@ export default function OrganizationGrid() {
   useEffect(() => {
     const fetchOrgs = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/organizations');
+        const response = await fetch(`${API_BASE_URL}/api/organizations`);
         if (!response.ok) throw new Error('Failed to fetch organizations');
         const data = await response.json();
         console.log(data)

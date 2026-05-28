@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './GenerateExcuseModal.css'; 
+import { API_BASE_URL } from '../config.js';
 
 const GenerateExcuseModal = ({ isOpen, onClose, orgId, selectedMembers }) => {
   const [events, setEvents] = useState([]);

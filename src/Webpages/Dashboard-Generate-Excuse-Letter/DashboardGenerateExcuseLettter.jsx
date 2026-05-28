@@ -4,6 +4,7 @@ import DashNavigation from '../Dash-Navigation/DashNavigation';
 import './DashboardGenerateExcuseLettter.css';
 import image from '../../Scripts/image'; 
 import searchIcon from '../../Assets/searchIcon.svg'
+import { API_BASE_URL } from '../config.js';
 
 import GenerateExcuseModal from './GenerateExcuseModal'; // Adjust path as needed
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import image from '../../Scripts/image'; 
 
+import { API_BASE_URL } from '../config.js';
+
 const ProfileInfo = ({ profile, isEditing, onChange }) => {
   return (
     <div className="mp-identity-section">
