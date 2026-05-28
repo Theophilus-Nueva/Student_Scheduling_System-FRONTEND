@@ -6,7 +6,6 @@ import DashNavigation from '../Dash-Navigation/DashNavigation';
 
 import { API_BASE_URL } from './../../../config';
 
-
 const DashboardCreateEvent = () => {
     const { id } = useParams();
 
@@ -30,14 +29,14 @@ const DashboardCreateEvent = () => {
       };
   
       fetchEvents();
-    }, []);
+    }, [id]);
 
-    // State to handle form inputs
     const [formData, setFormData] = useState({
         title: '',
         date: '',
         venue: '',
-        duration: '',
+        startTime: '',
+        endTime: '',
         description: '',
         organizationId: parseInt(id)
     });
@@ -45,37 +44,12 @@ const DashboardCreateEvent = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Helper: Converts "08:00 PM" -> "20:00"
-        const convertTo24Hour = (timeStr) => {
-            if (!timeStr) return '';
-            
-            const date = new Date(`1/1/2000 ${timeStr}`);
-            
-            if (isNaN(date.getTime())) return timeStr; 
-    
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-            
-            return `${hours}:${minutes}`;
-        };
-    
-        let startTimeRaw = '';
-        let endTimeRaw = '';
-    
-        if (formData.duration.includes('-')) {
-            const parts = formData.duration.split('-');
-            startTimeRaw = parts[0].trim(); 
-            endTimeRaw = parts[1] ? parts[1].trim() : ''; 
-        } else {
-            startTimeRaw = formData.duration.trim();
-        }
-    
         const payload = {
             title: formData.title,
             date: formData.date,
             venue: formData.venue,
-            startTime: convertTo24Hour(startTimeRaw), 
-            endTime: convertTo24Hour(endTimeRaw),    
+            startTime: formData.startTime || null, 
+            endTime: formData.endTime || null,    
             description: formData.description,
             organizationId: id
         };
@@ -95,9 +69,17 @@ const DashboardCreateEvent = () => {
                     title: '',
                     date: '',
                     venue: '',
-                    duration: '',
+                    startTime: '',
+                    endTime: '',
                     description: '',
                 });
+                
+                const fetchEvents = async () => {
+                    const res = await fetch(`${API_BASE_URL}/api/organizations/${id}/recent-events`);
+                    const eventData = await res.json();
+                    setEvents(eventData);
+                };
+                fetchEvents();
             } else {
                 alert(`Error: ${data.error}`);
             }
@@ -107,23 +89,17 @@ const DashboardCreateEvent = () => {
         }
     };
 
-    // Handle typing in form fields
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-
-    // Mock Data for "Recent Events" section
-    const recentEvents = events;
 
     return (
         <section>
             <DashNavigation />
 
             <div className="create-event-page">
-                {/* Main Content Grid */}
                 <div className="create-content-grid">
-                    {/* LEFT COLUMN: Event Details Form */}
                     <div className="left-column">
                         <h2 className="section-header">Event Details</h2>
 
@@ -157,24 +133,32 @@ const DashboardCreateEvent = () => {
                                     placeholder="Enter venue location"
                                 />
                             </div>
-                            <div className="form-group">
-                                <label>Duration</label>
-                                <input
-                                    type="text"
-                                    name="duration"
-                                    value={formData.duration}
-                                    onChange={handleChange}
-                                    placeholder="e.g. 8:00 AM - 5:00 PM"
-                                />
+                            <div className="form-group" style={{ display: 'flex', gap: '10px' }}>
+                                <div style={{ flex: 1 }}>
+                                    <label>Start Time</label>
+                                    <input
+                                        type="time"
+                                        name="startTime"
+                                        value={formData.startTime}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div style={{ flex: 1 }}>
+                                    <label>End Time</label>
+                                    <input
+                                        type="time"
+                                        name="endTime"
+                                        value={formData.endTime}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
                             <div className="action-footer">
                                 <button type='submit' className="finalize-btn">Save</button>
                             </div>
                         </form>
                     </div>
-                    {/* RIGHT COLUMN: Confirmation & Recent Events */}
                     <div className="right-column">
-                        {/* Section A: Confirmation Preview */}
                         <div className="confirmation-section">
                             <h2 className="section-header">
                                 Event Confirmation
@@ -194,17 +178,20 @@ const DashboardCreateEvent = () => {
                                 </div>
                                 <div className="preview-row">
                                     <span className="p-label"></span>
-                                    <span>{formData.duration}</span>
+                                    <span>
+                                        {formData.startTime && formData.endTime 
+                                            ? `${formData.startTime} - ${formData.endTime}` 
+                                            : formData.startTime || formData.endTime}
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Section B: Recent Events List */}
                         <div className="recent-section">
                             <h2 className="sub-header">Recent Events:</h2>
 
                             <div className="recent-grid">
-                                {recentEvents.map((event) => (
+                                {events.map((event) => (
                                     <div key={event.id} className="recent-card">
                                         <h4 className="recent-title">
                                             {event.title}
@@ -216,13 +203,14 @@ const DashboardCreateEvent = () => {
                                             {event.venue}
                                         </p>
                                         <p className="recent-info">
-                                            {event.time}
+                                            {event.start_time && event.end_time 
+                                                ? `${event.start_time} - ${event.end_time}` 
+                                                : ''}
                                         </p>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        {/* Finalize Button */}
                     </div>
                 </div>
             </div>
