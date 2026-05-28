@@ -1,0 +1,106 @@
+/* Layout.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Segoe+UI:wght@400;600;700&display=swap');
+
+/* --- Header Styles --- */
+.main-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8; 
+    padding: 15px 40px;
+    gap: 20px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.header-logo {
+    height: 80px;
+    width: auto;
+    background-color: #ccc; 
+    border-radius: 4px;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    font-family: 'Roboto Condensed', sans-serif; /* Condensed font for the long title */
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.header-subtitle {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0 0 0;
+}
+
+.header-red-bar {
+    background-color: #a00000; 
+    padding: 10px 40px;
+    color: white;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: #a00000;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: flex-end; /* Pushes content to the right */
+    align-items: center;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    /* Ensures footer stays at bottom if content is short */
+    margin-top: auto; 
+}
+
+.excuse-letter-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid white; /* The underline effect */
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+}
+
+.excuse-letter-link:hover {
+    opacity: 0.8;
+}
+
+.arrow-icon {
+    font-size: 1.5rem;
+    line-height: 0;
+}
+
+/* Main Layout Wrapper to ensure footer sticks to bottom */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1; /* Takes up remaining space */
+}

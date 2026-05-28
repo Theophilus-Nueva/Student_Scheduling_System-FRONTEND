@@ -1,0 +1,291 @@
+.excuse-letter-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.excuse-layout {
+  display: flex;
+  flex: 1;
+  max-width: 1600px; 
+  margin: 0 auto;
+  width: 100%;
+}
+
+.excuse-sidebar {
+  width: 300px;
+  background: white;
+  border-right: 1px solid #ddd;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #000;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.committee-group {
+  margin-top: 25px;
+}
+
+.comm-title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.red-indicator {
+  width: 4px;
+  height: 18px;
+  background-color: #a00000;
+  margin-right: 8px;
+}
+
+.comm-title-row h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #a00000;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.checkbox-row:hover {
+  background: #eee;
+}
+
+.checkbox-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cb-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* --- MAIN CONTENT --- */
+.excuse-main {
+  flex: 1;
+  padding: 30px 40px;
+}
+
+.main-header-row {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 4px;
+  width: 400px;
+}
+
+.search-bar input {
+  color: #000;
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  margin-left: 10px;
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px; /* Reduced padding */
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.member-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.member-card.selected {
+  background-color: #fffafa; 
+}
+
+.profile-img {
+  width: 160px;       
+  height: 160px;      
+  border-radius: 50%; 
+  object-fit: cover;  
+  margin-bottom: 15px;
+  border: 3px solid #f0f0f0; 
+}
+
+.profile-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin-bottom: 15px;
+}
+
+/* Text Styling */
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: #000;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.member-office {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #a00000; /* Red accent for Section */
+  margin: 5px 0 0 0;
+}
+
+.member-college {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* View/Select Button */
+.view-btn {
+  font-weight: 700;
+  color: #a00000;
+  background: none;
+  border: 1px solid #a00000;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.view-btn:hover {
+  background-color: #a00000;
+  color: white;
+}
+
+.add-card {
+  border: 2px dashed #ccc;
+  background: transparent;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-member-btn {
+  font-size: 2rem;
+  background: #a00000;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Sidebar Footer for Generate Button */
+.sidebar-footer {
+  margin-top: auto; 
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  background-color: white;
+  position: sticky;
+  bottom: 30px;
+  width: 100%;
+}
+
+.generate-btn {
+  width: 100%;
+  background-color: #a00000; /* LPU Red */
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.generate-btn:hover {
+  background-color: #800000;
+}
+
+.floating-add-container {
+  padding-top: 2em;
+  display: flex;
+  justify-content: center;
+}
+
+.floating-add-btn {
+  background-color: transparent;
+  color: #a00000;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: #a00000 solid 1px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.floating-add-btn:hover {
+  background-color: #fff5f5;
+  transform: scale(1.01);
+}
+
+/* Update sidebar to flex to push footer down */
+.excuse-sidebar {
+  display: flex;
+  flex-direction: column;
+  /* ensure height is handled, e.g., height: calc(100vh - 70px); */
+}
+
+.committees-list {
+  flex: 1; /* Takes available space */
+  overflow-y: auto; /* Scrollable list */
+}

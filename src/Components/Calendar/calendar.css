@@ -1,0 +1,200 @@
+/* =========================================
+   1. Main Container & Layout
+   ========================================= */
+   .calendar-container {
+    width: 100%;
+    max-width: 700px; /* Adjust based on your sidebar width */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: white;
+  }
+  
+  /* =========================================
+     2. Custom Header (Title + Navigation)
+     ========================================= */
+  .custom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px; /* Spacing between header and grid */
+    padding: 0 10px;
+  }
+  
+  /* Wrapper for Arrows and Month Name */
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* The Month Year Text (e.g. OCTOBER 25) */
+.month-year {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  color: #000;
+  line-height: 1;
+  
+  /* --- NEW LINES TO FIX JUMPING --- */
+  width: 280px;        /* Reserve fixed space (accommodates "SEPTEMBER 2025") */
+  text-align: center;  /* Center the text within that reserved space */
+  display: block;      /* Ensure width property is respected */
+}
+  
+  /* The Arrow Buttons (< >) */
+  .nav-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-btn:hover {
+    color: #c00; /* Red on hover */
+  }
+  
+  /* The "+ Add Event" Link */
+  .add-event-link {
+    color: #333;
+    text-decoration: underline;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  /* =========================================
+     3. React Calendar Overrides
+     ========================================= */
+  
+  /* Remove default frame/borders of the library */
+  .react-calendar {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    line-height: 1.125em;
+  }
+  
+  /* --- Weekday Headers (MO, TU, WE...) --- */
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 20px; /* Space between MO/TU and numbers */
+    color: #000;
+  }
+  
+  .react-calendar__month-view__weekdays__weekday {
+    padding: 0.5em;
+  }
+  
+  .react-calendar__month-view__weekdays__weekday abbr {
+    text-decoration: none;
+    cursor: default;
+  }
+  
+  /* --- The Day Tiles --- */
+  .react-calendar__tile {
+    max-width: 100%;
+    height: 50px; /* Fixed height for consistent circles */
+    padding: 0;   /* Remove padding to center content via flex/grid if needed */
+    background: none;
+    text-align: center;
+    
+    /* Centering the number vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 1.1rem;
+    color: #000;
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  /* Remove default hover blue/yellow backgrounds */
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    background-color: #0000000f;
+    color: #c00; /* Turn text red on hover */
+  }
+  
+  /* Remove the default "selected" blue background */
+  .react-calendar__tile--active {
+    background: transparent !important;
+    color: #000 !important;
+  }
+  
+  /* Grey out days from neighboring months */
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #ccc !important;
+  }
+  
+  /* =========================================
+     4. Special Indicators (Red Dot & Today)
+     ========================================= */
+  
+  /* The Red Dot for Events */
+  .event-dot {
+    height: 40px;
+    width: 40px;
+    background-color: rgba(204, 0, 0, 0);
+    outline: #c00 solid 1px; 
+    border-radius: 50%;
+    
+    /* Positioning */
+    position: absolute;
+    top: 50%; /* Push it to the bottom of the tile */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* --- Current Date ("Today") Styling --- */
+/* 1. Reset the tile itself so it acts as a container */
+.react-calendar__tile--now {
+  background: transparent !important;
+  position: relative;
+  z-index: 1; /* Ensure content sits on top of the pseudo-element */
+  overflow: visible !important;
+}
+
+/* 2. Create the perfect circle using ::after */
+.react-calendar__tile--now::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center perfectly */
+  
+  width: 40px;  
+  height: 40px; 
+  
+  background: #c00;
+  border-radius: 50%;
+  z-index: -1; /* Send it behind the number */
+  box-shadow: 0 2px 5px rgba(204, 0, 0, 0.3);
+}
+
+/* 3. Force the text (abbr) to be white */
+.react-calendar__tile--now abbr {
+  color: white !important;
+}
+
+/* 4. Ensure the Event Dot stays white and visible on top */
+.react-calendar__tile--now .event-dot {
+  background-color: white !important;
+  z-index: 2;
+}
+  
+  /* Invert the dot color if it is inside the "Today" circle */
+  .react-calendar__tile--now .event-dot {
+    background-color: white !important;
+  }

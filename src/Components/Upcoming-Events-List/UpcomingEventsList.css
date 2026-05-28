@@ -1,0 +1,74 @@
+/* Container */
+.upcoming-container {
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    padding: 10px;
+  }
+  
+  /* "UPCOMING" Header */
+  .upcoming-header {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: #000;
+    letter-spacing: 0.5px;
+  }
+  
+  /* List Reset */
+  .events-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Individual Event Item */
+  .event-item {
+    position: relative;
+    padding-left: 25px; /* Indent content to make room for the bullet */
+    margin-bottom: 40px; /* Space between different events */
+  }
+  
+  /* Custom Red Bullet Point */
+  .event-item::before {
+    content: '•';       /* The bullet character */
+    color: #c00;        /* Theme Red */
+    font-size: 2.5rem;  /* Large size */
+    position: absolute;
+    left: -5px;         /* Position to the left */
+    top: -15px;         /* Move up slightly to align with the Title */
+    line-height: 1;
+  }
+  
+  /* The Event Title (e.g., "Tech Passion Projects") */
+  .event-title {
+    color: #c00;        /* Theme Red */
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;  /* Small gap below title */
+  }
+  
+  /* Container for the details rows */
+  .event-details {
+    font-size: 1rem;
+    color: #000;
+    line-height: 1.6;
+  }
+  
+  /* Each Row (Label : Value) */
+  .detail-row {
+    display: flex;
+    gap: 8px; /* Space between the colon and the value */
+  }
+  
+  /* The Label (e.g., "SSG :") */
+  .label {
+    white-space: nowrap; /* Prevent label from wrapping */
+    font-weight: 400;    /* Regular weight */
+  }
+  
+  /* The Value (e.g., "CCS SG") */
+  .value {
+    font-weight: 400;
+  }

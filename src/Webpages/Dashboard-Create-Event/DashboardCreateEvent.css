@@ -1,0 +1,202 @@
+/* Page Container */
+.create-event-page {
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 50px;
+    color:#000;
+
+  }
+  
+  /* Red Bar specific to this page */
+  .page-header-bar {
+    background-color: #a00000; /* University Red */
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 30px;
+  }
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  .page-header-bar h1 {
+    color: white;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  /* Main Grid Layout */
+  .create-content-grid {
+    display: flex;
+    gap: 60px; /* Space between Left and Right columns */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  /* --- LEFT COLUMN: FORM --- */
+  .left-column {
+    flex: 1; /* Takes up 50% roughly */
+  }
+  
+  .section-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 3px solid #000; /* Thick black underline */
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    display: inline-block; /* Underline only text width */
+    min-width: 200px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #000;
+    font-size: 1rem;
+  }
+  
+  /* --- UPDATED INPUT STYLES (INTEGRATED) --- */
+  .form-group input, 
+  .form-group textarea {
+    width: 100%;
+    padding: 12px; /* Increased padding for better look */
+    
+    /* The New Look: White bg + Grayish outline */
+    background-color: #ffffff; 
+    border: 1px solid #4a4a4a; /* Dark gray border */
+    
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Placeholder Styling */
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #888; 
+  }
+  
+  /* Focus State */
+  .form-group input:focus, 
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #000; /* Solid black on focus */
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05); /* Subtle glow */
+  }
+  
+  /* Small Save Button */
+  .save-btn.small {
+    background-color: #a00000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  /* --- RIGHT COLUMN: PREVIEW --- */
+  .right-column {
+    flex: 1.2; /* Slightly wider */
+  }
+  
+  .preview-box {
+    border: 1px solid #999;
+    padding: 20px;
+    background-color: #fcfcfc;
+    min-height: 180px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+  
+  .preview-title {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  
+  .preview-row {
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .p-label {
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  
+  /* --- RECENT EVENTS SECTION --- */
+  .sub-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .recent-grid {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .recent-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    flex: 1;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .recent-title {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  .recent-info {
+    margin: 3px 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .view-details {
+    display: inline-block;
+    margin-top: 10px;
+    color: #a00000;
+    text-decoration: underline;
+    font-size: 0.9rem;
+  }
+  
+  /* Finalize Button */
+  .action-footer {
+    display: flex;
+    justify-content: flex-start; /* Align right */
+  }
+  
+  .finalize-btn {
+    background-color: #a00000;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .finalize-btn:hover,
+  .save-btn:hover {
+    background-color: #800000; /* Darker red on hover */
+  }

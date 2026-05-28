@@ -1,0 +1,328 @@
+.mp-page-wrapper {
+  background-color: #f4f4f4;
+  color: #000;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mp-top-header {
+  background-color: #e0e0e0;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ccc;
+}
+
+.mp-header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mp-header-text h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #000;
+  font-weight: 700;
+}
+
+.mp-header-text p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.mp-red-strip {
+  background-color: #a00000; /* LPU Red */
+  color: white;
+  padding: 10px 40px;
+}
+
+.mp-red-strip h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* --- Main Content Area --- */
+.mp-main-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.mp-profile-card {
+  background: white;
+  width: 100%;
+  max-width: 900px;
+  padding: 40px;
+  position: relative; /* Essential for absolute positioning of edit button */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* --- Buttons --- */
+.mp-back-btn {
+  background: none;
+  border: none;
+  color: #a00000;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* UPDATED: Top Right Edit Button */
+.mp-top-edit-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  
+  background-color: transparent;
+  color: #555;
+  border: 1px solid #ccc;
+  
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.mp-top-edit-btn:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border-color: #999;
+}
+
+/* Save Mode (Green) */
+.mp-top-edit-btn.mp-save-mode {
+  background-color: #28a745; /* Green */
+  color: white;
+  border-color: #28a745;
+}
+
+.mp-top-edit-btn.mp-save-mode:hover {
+  background-color: #218838;
+}
+
+/* --- Identity Section --- */
+.mp-identity-section {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.mp-avatar-box {
+  width: 150px;
+  height: 150px;
+  background-color: #777;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mp-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mp-camera-icon {
+  font-size: 3rem;
+  color: white;
+  opacity: 0.5;
+}
+
+.mp-details-block {
+  flex: 1;
+  border-left: 4px solid #a00000;
+  padding-left: 20px;
+}
+
+.mp-name-text {
+  font-size: 2rem;
+  margin: 0 0 5px 0;
+  color: #444;
+}
+
+.mp-college-text {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.mp-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mp-info-row {
+  font-size: 0.95rem;
+}
+
+.mp-info-row .mp-label {
+  font-weight: 700;
+  margin-right: 8px;
+  color: #000;
+}
+
+/* --- Schedule Table --- */
+.mp-schedule-area h3 {
+  color: #555;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.mp-table-wrapper {
+  overflow-x: auto;
+}
+
+.mp-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.mp-schedule-table th {
+  background-color: #f0f0f0;
+  text-align: left;
+  padding: 12px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.mp-schedule-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  color: #444;
+  vertical-align: middle;
+}
+
+/* --- Inputs --- */
+.mp-profile-card input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mp-edit-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.mp-schedule-table input {
+    background-color: #fafafa;
+}
+
+/* --- Footer Bar --- */
+.mp-footer-bar {
+  background-color: #a00000;
+  color: white;
+  padding: 15px 40px;
+  text-align: right;
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.mp-profile-card input {
+  background-color: #ffffff;
+  color: #333333;            
+  
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none; 
+}
+
+.mp-profile-card input:focus {
+  border-color: #a00000; 
+  box-shadow: 0 0 3px rgba(160, 0, 0, 0.2);
+}
+
+.mp-edit-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.mp-schedule-table input {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.mp-add-row-btn {
+  background-color: #f8f9fa;
+  border: 1px dashed #999;
+  color: #555;
+  padding: 10px 20px;
+  width: 100%; 
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.mp-add-row-btn:hover {
+  background-color: #e9ecef;
+  border-color: #a00000;
+  color: #a00000;
+}
+
+.mp-top-actions {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.mp-top-edit-btn {
+  position: static; 
+  background-color: transparent;
+  color: #555;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.mp-delete-btn {
+  background-color: transparent;
+  border: 1px solid #d9534f; 
+  color: #d9534f; 
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.mp-delete-btn:hover {
+  background-color: #d9534f;
+  color: white;
+}
