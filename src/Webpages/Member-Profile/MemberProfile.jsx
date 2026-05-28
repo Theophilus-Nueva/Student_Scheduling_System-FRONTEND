@@ -8,9 +8,8 @@ import ScheduleTable from './ScheduleTable';
 
 import { API_BASE_URL } from './../../../config';
 
-
 const MemberProfile = () => {
-  const { id, committee } = useParams(); // 'id' = Org ID, 'committee' = Member ID
+  const { id, committee } = useParams();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
@@ -25,7 +24,6 @@ const MemberProfile = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [schedule, setSchedule] = useState([]);
 
-  // 1. Fetch Data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,14 +42,13 @@ const MemberProfile = () => {
         }
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching data:", err);
+        console.error(err);
         setLoading(false);
       }
     };
     fetchData();
   }, [id, committee]);
 
-  // Handlers
   const handleProfileChange = (e) => {
     const { name, value } = e.target;
     setProfile(prev => ({ ...prev, [name]: value }));
@@ -78,9 +75,7 @@ const MemberProfile = () => {
     ]);
   };
 
-  // --- NEW: DELETE MEMBER FUNCTION ---
   const handleDelete = async () => {
-    // 1. Confirm deletion
     const confirmed = window.confirm(
         `Are you sure you want to delete ${profile.first_name} ${profile.last_name}? This action cannot be undone.`
     );
@@ -89,7 +84,6 @@ const MemberProfile = () => {
 
     try {
         setLoading(true);
-        // 2. Call API
         const response = await fetch(`${API_BASE_URL}/api/committees/${committee}`, {
             method: 'DELETE',
         });
@@ -98,18 +92,16 @@ const MemberProfile = () => {
             throw new Error('Failed to delete member');
         }
 
-        // 3. Success
         alert("Member deleted successfully.");
-        navigate(`/org/${id}/excuse-letter`); // Go back to main list
+        navigate(`/org/${id}/excuse-letter`); 
 
     } catch (error) {
-        console.error("Error deleting member:", error);
+        console.error(error);
         alert("An error occurred while deleting.");
         setLoading(false);
     }
   };
 
-  // Save Logic (Updated with correct fields)
   const handleSave = async () => {
     try {
       setLoading(true);
@@ -136,19 +128,17 @@ const MemberProfile = () => {
           throw new Error("Failed to update profile: " + errText);
       }
 
-      // Schedule Logic (PUT vs POST)
       const schedulePromises = schedule.map(row => {
         if (!row.subject_code && !row.day && !row.start_time) return Promise.resolve();
 
         const payload = {
-            startTime: row.start_time,
-            endTime: row.end_time,
+            start_time: row.start_time,
+            end_time: row.end_time,
             day: row.day,
             section: row.section,
-            subjectTitle: row.subject_title || row.subject_code,
-            subjectCode: row.subject_code,
+            subject_code: row.subject_code,
             instructor: row.instructor,
-            userId: committee
+            committee_id: committee 
         };
 
         if (row.id) {
@@ -172,7 +162,7 @@ const MemberProfile = () => {
       window.location.reload(); 
 
     } catch (err) {
-      console.error("Error updating:", err);
+      console.error(err);
       alert("Failed to save changes.");
     } finally {
       setLoading(false);
@@ -192,10 +182,7 @@ const MemberProfile = () => {
             &larr; Back to list
           </button>
 
-          {/* Action Buttons Container */}
           <div className="mp-top-actions">
-            
-            {/* NEW: Delete Button (Only visible in Edit Mode) */}
             {isEditing && (
                 <button 
                     className="mp-delete-btn" 
