@@ -3,7 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import DashNavigation from '../Dash-Navigation/DashNavigation';
 import '../Member-Profile/MemberProfile.css'; 
 import ScheduleTable from '../Member-Profile/ScheduleTable'; 
-import { API_BASE_URL } from '../config.js';
+
+import { API_BASE_URL } from '../../../config';
+
 
 const AddMember = () => {
     const { id } = useParams(); 
@@ -72,7 +74,7 @@ const AddMember = () => {
             }
 
             // --- API CALL 1: Add Member (Multipart) ---
-            const profileResponse = await fetch(`http://localhost:3000/api/committees`, {
+            const profileResponse = await fetch(`${API_BASE_URL}/api/committees`, {
                 method: 'POST',
                 // Note: Do NOT set Content-Type header manually for FormData
                 body: data, 
@@ -93,7 +95,7 @@ const AddMember = () => {
                 const validSchedule = schedule.filter(row => row.subject_code || row.day);
                 
                 const schedulePromises = validSchedule.map(row => {
-                    return fetch(`http://localhost:3000/api/schedules`, {
+                    return fetch(`${API_BASE_URL}/api/schedules`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
