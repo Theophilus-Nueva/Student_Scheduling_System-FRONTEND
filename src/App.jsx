@@ -12,7 +12,7 @@ import DashboardGenerateExcuseLettter from './Webpages/Dashboard-Generate-Excuse
 import MemberProfile from './Webpages/Member-Profile/MemberProfile';
 import AddMember from './Webpages/Dashboard-Generate-Excuse-Letter/GenerateAddMember'
 
-import { API_BASE_URL } from './config.js';
+import { API_BASE_URL } from '../config.js';
 
 const Layout = () => {
   const location = useLocation();
