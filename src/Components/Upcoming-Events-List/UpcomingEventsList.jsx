@@ -28,10 +28,8 @@ export default function UpcomingEventsList({ id }) {
     fetchEvents();
   }, [id]);
 
-  // 2. The function that makes the request to the backend to archive
   const handleArchive = async (eventId) => {
     try {
-        // Send the DELETE request to your Express backend
         const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`, {
             method: 'DELETE',
             headers: {
