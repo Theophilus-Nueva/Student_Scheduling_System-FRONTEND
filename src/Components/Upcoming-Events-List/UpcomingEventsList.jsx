@@ -31,8 +31,6 @@ export default function UpcomingEventsList({ id }) {
   // 2. The function that makes the request to the backend to archive
   const handleArchive = async (eventId) => {
     // Double-check with the user before archiving
-    const confirmed = window.confirm("Are you sure you want to archive this event?");
-    if (!confirmed) return;
 
     try {
         // Send the DELETE request to your Express backend
