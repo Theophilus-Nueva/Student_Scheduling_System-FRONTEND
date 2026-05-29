@@ -32,6 +32,15 @@ export default function DashNavigation() {
                     }>
                     Generate Excuse Letter
                 </NavLink>
+
+                <NavLink
+                    to={`/org/${id}/archives`}
+                    className={({ isActive }) =>
+                        isActive ? 'nav-tab active' : 'nav-tab'
+                    }>
+                    Archived Events
+                </NavLink>
+
             </nav>
 
             <div className="nav-actions">
