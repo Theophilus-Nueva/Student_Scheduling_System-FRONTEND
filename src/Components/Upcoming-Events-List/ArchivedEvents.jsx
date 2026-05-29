@@ -3,18 +3,17 @@ import './UpcomingEventsList.css';
 
 import { API_BASE_URL } from './../../../config';
 
-export default function UpcomingEventsList({ id }) {
+export default function ArchivedEventsList({ id }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 1. Fetch the upcoming events when the component loads
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchArchivedEvents = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/organizations/${id}/upcoming-events`);
+        const response = await fetch(`${API_BASE_URL}/api/organizations/${id}/archived-events`);
         
-        if (!response.ok) throw new Error('Failed to fetch events');
+        if (!response.ok) throw new Error('Failed to fetch archived events');
         
         const data = await response.json();
         setEvents(data);
@@ -25,39 +24,35 @@ export default function UpcomingEventsList({ id }) {
       }
     };
 
-    fetchEvents();
+    fetchArchivedEvents();
   }, [id]);
 
-  // 2. The function that makes the request to the backend to archive
-  const handleArchive = async (eventId) => {
-    // Double-check with the user before archiving
-    const confirmed = window.confirm("Are you sure you want to archive this event?");
+  const handleRestore = async (eventId) => {
+    const confirmed = window.confirm("Are you sure you want to restore this event to the active schedule?");
     if (!confirmed) return;
 
     try {
-        // Send the DELETE request to your Express backend
-        const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`, {
-            method: 'DELETE',
+        const response = await fetch(`${API_BASE_URL}/api/events/${eventId}/restore`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
 
         if (response.ok) {
-            // SUCCESS! Instantly remove the event from the screen
+            // Instantly remove it from the archive list on the screen
             setEvents((prevEvents) => prevEvents.filter(event => event.id !== eventId));
-            alert("Event archived successfully!");
+            alert("Event restored successfully!");
         } else {
             const errorData = await response.json();
-            alert(`Failed to archive: ${errorData.error}`);
+            alert(`Failed to restore: ${errorData.error}`);
         }
     } catch (err) {
-        console.error("Error archiving event:", err);
-        alert("An error occurred while communicating with the backend.");
+        console.error("Error restoring event:", err);
+        alert("An error occurred while restoring.");
     }
   };
 
-  // Helper to make the date look nice
   const formatDate = (dateString) => {
     if (!dateString) return '';
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -69,17 +64,17 @@ export default function UpcomingEventsList({ id }) {
 
   return (
     <div className="upcoming-container">
-      <h2 className="upcoming-header">UPCOMING</h2>
+      <h2 className="upcoming-header" style={{ color: '#777' }}>ARCHIVED EVENTS</h2>
       
       {events.length === 0 ? (
-        <p style={{ paddingLeft: '10px', color: '#555' }}>No upcoming events scheduled.</p>
+        <p style={{ paddingLeft: '10px', color: '#555' }}>No archived events found.</p>
       ) : (
         <ul className="events-list">
           {events.map((event) => (
             <li key={event.id} className="event-item">
-              <h3 className="event-title">{event.title}</h3>
+              <h3 className="event-title" style={{ color: '#777' }}>{event.title}</h3>
               
-              <div className="event-details">
+              <div className="event-details" style={{ color: '#555' }}>
                 <div className="detail-row">
                   <span className="label">Title :</span> 
                   <span className="value">{event.title}</span>
@@ -99,13 +94,15 @@ export default function UpcomingEventsList({ id }) {
                 </div>
               </div>
 
-              {/* 3. The Archive Button */}
               <div className="event-actions">
                   <button 
                       className="archive-btn" 
-                      onClick={() => handleArchive(event.id)}
+                      style={{ borderColor: '#28a745', color: '#28a745' }}
+                      onMouseOver={(e) => { e.target.style.backgroundColor = '#28a745'; e.target.style.color = 'white'; }}
+                      onMouseOut={(e) => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#28a745'; }}
+                      onClick={() => handleRestore(event.id)}
                   >
-                      Archive Event
+                      Restore Event
                   </button>
               </div>
               
