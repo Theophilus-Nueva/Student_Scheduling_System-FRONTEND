@@ -11,7 +11,7 @@ import DashboardCreateEvent from './Webpages/Dashboard-Create-Event/DashboardCre
 import DashboardGenerateExcuseLettter from './Webpages/Dashboard-Generate-Excuse-Letter/DashboardGenerateExcuseLettter';
 import MemberProfile from './Webpages/Member-Profile/MemberProfile';
 import AddMember from './Webpages/Dashboard-Generate-Excuse-Letter/GenerateAddMember'
-import DashboardArchivedEvents from './Components/Upcoming-Events-List/DashboardArchivedEvents'; 
+import DashboardArchivedEvents from './Components/Upcoming-Events-List/DashboardArchivedEvents.jsx'; 
 
 import { API_BASE_URL } from '../config.js';
 
