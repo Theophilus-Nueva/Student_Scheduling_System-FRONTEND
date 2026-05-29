@@ -11,6 +11,7 @@ import DashboardCreateEvent from './Webpages/Dashboard-Create-Event/DashboardCre
 import DashboardGenerateExcuseLettter from './Webpages/Dashboard-Generate-Excuse-Letter/DashboardGenerateExcuseLettter';
 import MemberProfile from './Webpages/Member-Profile/MemberProfile';
 import AddMember from './Webpages/Dashboard-Generate-Excuse-Letter/GenerateAddMember'
+import DashboardArchivedEvents from './Components/Upcoming-Events-List/DashboardArchivedEvents'; 
 
 import { API_BASE_URL } from '../config.js';
 
@@ -76,6 +77,7 @@ function App() {
               <Route path="org/:id/excuse-letter" element={<DashboardGenerateExcuseLettter />} />
               <Route path="org/:id/member-profile/:committee" element={<MemberProfile />} />
               <Route path="org/:id/add-member" element={<AddMember />} />
+              <Route path="/org/:id/archives" element={<DashboardArchivedEvents />} />
             </Route>
           </Routes>
         </BrowserRouter>
