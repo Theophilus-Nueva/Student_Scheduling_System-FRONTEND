@@ -8,10 +8,21 @@ export default function UpcomingEventsList({ id }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // 1. Get the user's role and token from their browser vault
+  const userRole = localStorage.getItem('role');
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/organizations/${id}/upcoming-events`);
+        // MAGIC FIX: We must send the token to get past the backend Bouncer!
+        const response = await fetch(`${API_BASE_URL}/api/organizations/${id}/upcoming-events`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
         if (!response.ok) throw new Error('Failed to fetch events');
         
         const data = await response.json();
@@ -24,7 +35,35 @@ export default function UpcomingEventsList({ id }) {
     };
 
     fetchEvents();
-  }, []);
+  }, [id, token]);
+
+  // 2. The Archive Function
+  const handleArchive = async (eventId) => {
+    const confirmed = window.confirm("Are you sure you want to archive this event?");
+    if (!confirmed) return;
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            alert("Event archived successfully!");
+            // Instantly remove the event from the screen without refreshing the page!
+            setEvents((prevEvents) => prevEvents.filter(event => event.id !== eventId));
+        } else {
+            const errorData = await response.json();
+            alert(`Failed to archive: ${errorData.error}`);
+        }
+    } catch (err) {
+        console.error("Error archiving event:", err);
+        alert("An error occurred while archiving.");
+    }
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -42,18 +81,14 @@ export default function UpcomingEventsList({ id }) {
       <ul className="events-list">
         {events.map((event) => (
           <li key={event.id} className="event-item">
-            {/* 1. TITLE */}
             <h3 className="event-title">{event.title}</h3>
             
             <div className="event-details">
-
-              {/* 2. EVENT NAME */}
               <div className="detail-row">
                 <span className="label">Title :</span> 
                 <span className="value">{event.title}</span>
               </div>
 
-              {/* 3. DATE */}
               <div className="detail-row">
                 <span className="label">Date :</span> 
                 <span className="value">
@@ -62,15 +97,35 @@ export default function UpcomingEventsList({ id }) {
                 </span>
               </div>
 
-              {/* 4. VENUE */}
               <div className="detail-row">
                 <span className="label">Venue :</span> 
                 <span className="value">{event.venue}</span>
               </div>
             </div>
+
+            {/* 3. The Magic Button: Only Admins and Officers can see this! */}
+            {userRole !== 'committee' && (
+                <div style={{ marginTop: '15px', textAlign: 'right' }}>
+                    <button 
+                        onClick={() => handleArchive(event.id)} 
+                        style={{
+                            backgroundColor: '#e74c3c',
+                            color: 'white',
+                            border: 'none',
+                            padding: '8px 16px',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        Archive Event
+                    </button>
+                </div>
+            )}
+            
           </li>
         ))}
       </ul>
     </div>
   );
-};
+}
